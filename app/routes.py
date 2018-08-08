@@ -19,7 +19,7 @@ def get_users():
     for k in args:
         if k == 'gender':
             query = query.filter_by(gender=args[k])
-        if k == 'email_dome':
+        if k == 'email_domain':
             query = query.filter(Person.email.endswith(args[k]))
         if k == 'first_name':
             query = query.filter_by(first_name=args[k].lower())
