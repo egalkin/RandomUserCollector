@@ -18,13 +18,13 @@ def get_users():
     query = Person.query
     for k in args:
         if k == 'gender':
-            query = query.filter_by(gender=args['gender'])
-        if k == 'email':
-            query = query.filter_by(email=args['email'])
+            query = query.filter_by(gender=args[k])
+        if k == 'email_dome':
+            query = query.filter(Person.email.endswith(args[k]))
         if k == 'first_name':
-            query = query.filter_by(first_name=args['first_name'].lower())
+            query = query.filter_by(first_name=args[k].lower())
         if k == 'last_name':
-            query = query.filter_by(last_name=args['last_name'].lower())
+            query = query.filter_by(last_name=args[k].lower())
     persons_list = query.all()
     return render_template('all_users.html', persons_list=persons_list)
 
