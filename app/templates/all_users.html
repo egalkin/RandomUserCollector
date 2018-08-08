@@ -1,0 +1,10 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <h1>All Users</h1>
+    {% for person in persons_list %}
+        <p>
+            <b><a href="{{ url_for('user', id = person.id) }}" style="color:black">{{ person.get_full_name() }}</a> </b>
+        </p>
+    {% endfor %}
+{% endblock %}

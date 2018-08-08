@@ -1,0 +1,7 @@
+migrations/
+__pycache__/
+app/__pycache__/
+static/
+venv/
+*.db
+isCached
