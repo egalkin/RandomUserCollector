@@ -23,7 +23,8 @@ def get_users():
             query = query.filter_by(email=args['email'])
         if k == 'first_name':
             query = query.filter_by(first_name=args['first_name'].lower())
-            print(query.all())
+        if k == 'last_name':
+            query = query.filter_by(last_name=args['last_name'].lower())
     persons_list = query.all()
     return render_template('all_users.html', persons_list=persons_list)
 
