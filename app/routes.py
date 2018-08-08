@@ -2,7 +2,7 @@ from flask import render_template
 from app import app
 from app.models import Person
 from app.utils import check_first_launch
-
+from flask import request
 
 
 @app.route('/')
@@ -14,7 +14,17 @@ def init_caching():
 @app.route('/user')
 def get_users():
     check_first_launch()
-    persons_list = Person.query.all()
+    args = request.args
+    query = Person.query
+    for k in args:
+        if k == 'gender':
+            query = query.filter_by(gender=args['gender'])
+        if k == 'email':
+            query = query.filter_by(email=args['email'])
+        if k == 'first_name':
+            query = query.filter_by(first_name=args['first_name'].lower())
+            print(query.all())
+    persons_list = query.all()
     return render_template('all_users.html', persons_list=persons_list)
 
 
