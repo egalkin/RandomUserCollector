@@ -1,7 +1,13 @@
 import os.path
 from app.models import Person
 from app import db
+import requests
+import json
 
+def check_first_launch():
+    if is_first_launch():
+        response = requests.get('https://randomuser.me/api/?results=100')
+        fill_db(json.loads(response.text))
 
 def is_first_launch():
     if not os.path.isfile('isCached'):
